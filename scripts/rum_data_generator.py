@@ -1,14 +1,17 @@
-import requests
+import os
+import json
 import random
-import time
 import uuid
+from datetime import datetime, timedelta
 
-# Datadog RUM credentials
-CLIENT_TOKEN = "pub9da8e9eff920a0bfe4cf59316c0f92c5"
-APPLICATION_ID = "ba828cb5-c3be-45be-8fb6-105fb0ed9ee4"
-SITE = "us5.datadoghq.com"
+# -----------------------------
+# 1️⃣ Ensure 'data' folder exists
+# -----------------------------
+os.makedirs("data", exist_ok=True)
 
-# Behavioral rules by region
+# -----------------------------
+# 2️⃣ Define behavioral rules by region
+# -----------------------------
 behavioral_map = {
     "Nigeria": {"device": ["mobile"] * 6 + ["desktop"] * 2 + ["tablet"] * 2,
                 "actions": ["click", "scroll", "navigate"],
@@ -36,15 +39,39 @@ behavioral_map = {
               "duration": (15000, 35000)},
 }
 
+# -----------------------------
+# 3️⃣ Define pages and browsers
+# -----------------------------
 pages = ["/home", "/products", "/checkout",
          "/blog", "/contact", "/pricing", "/dashboard"]
 browsers = ["Chrome", "Safari", "Edge", "Firefox", "Opera"]
 
+# -----------------------------
+# 4️⃣ Define timestamps (6 months)
+# -----------------------------
+start_date = datetime.now() - timedelta(days=180)  # 6 months ago
+end_date = datetime.now()
+
+
+def random_timestamp(start, end):
+    """Generate a random timestamp (ms) and human-readable timestamp between start and end"""
+    delta = end - start
+    random_seconds = random.randint(0, int(delta.total_seconds()))
+    random_time = start + timedelta(seconds=random_seconds)
+    timestamp_ms = int(random_time.timestamp() * 1000)
+    timestamp_readable = random_time.strftime("%Y-%m-%d %H:%M:%S")
+    return timestamp_ms, timestamp_readable
+
+# -----------------------------
+# 5️⃣ Generate a single event
+# -----------------------------
+
 
 def generate_event(country):
+    """Generate a single synthetic RUM event"""
     behavior = behavioral_map[country]
+    ts_ms, ts_readable = random_timestamp(start_date, end_date)
     return {
-        "application": {"id": APPLICATION_ID},
         "session_id": str(uuid.uuid4()),
         "view": random.choice(pages),
         "country": country,
@@ -52,30 +79,32 @@ def generate_event(country):
         "browser": random.choice(browsers),
         "duration": random.randint(*behavior["duration"]),
         "user_action": random.choice(behavior["actions"]),
-        "timestamp": int(time.time() * 1000)
+        "timestamp": ts_ms,
+        "timestamp_readable": ts_readable
     }
 
 
-# Headers
-headers = {
-    "DD-API-KEY": CLIENT_TOKEN,
-    "Content-Type": "application/json"
-}
-
-# Generate 4000 events equally split among regions
+# -----------------------------
+# 6️⃣ Generate all events (4,000)
+# -----------------------------
+events = []
 countries = list(behavioral_map.keys())
 total_events = 4000
 events_per_country = total_events // len(countries)
 
 for country in countries:
-    for i in range(events_per_country):
-        data = generate_event(country)
-        try:
-            requests.post(
-                f"https://browser-intake-{SITE}/api/v2/rum", json=data, headers=headers)
-        except Exception as e:
-            print(f"Error sending {country} event: {e}")
-        time.sleep(0.03)
-    print(f"✅ {country}: {events_per_country} events sent")
+    for _ in range(events_per_country):
+        events.append(generate_event(country))
 
-print("🎉 Done! 4000 structured RUM events successfully simulated with realistic behavior patterns.")
+# -----------------------------
+# 7️⃣ Shuffle events for randomness
+# -----------------------------
+random.shuffle(events)
+
+# -----------------------------
+# 8️⃣ Save events to JSON
+# -----------------------------
+with open("data/rum_generated.json", "w") as f:
+    json.dump(events, f, indent=2)
+
+print("✅ 4,000 synthetic RUM events saved locally with 6-month randomized timestamps and country order!")

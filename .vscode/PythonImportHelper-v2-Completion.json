@@ -1,0 +1,153 @@
+[
+    {
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
+        "documentation": {}
+    },
+    {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "random",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "random",
+        "description": "random",
+        "detail": "random",
+        "documentation": {}
+    },
+    {
+        "label": "uuid",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "uuid",
+        "description": "uuid",
+        "detail": "uuid",
+        "documentation": {}
+    },
+    {
+        "label": "datetime",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "timedelta",
+        "importPath": "datetime",
+        "description": "datetime",
+        "isExtraImport": true,
+        "detail": "datetime",
+        "documentation": {}
+    },
+    {
+        "label": "random_timestamp",
+        "kind": 2,
+        "importPath": "scripts.rum_data_generator",
+        "description": "scripts.rum_data_generator",
+        "peekOfCode": "def random_timestamp(start, end):\n    \"\"\"Generate a random timestamp (ms) and human-readable timestamp between start and end\"\"\"\n    delta = end - start\n    random_seconds = random.randint(0, int(delta.total_seconds()))\n    random_time = start + timedelta(seconds=random_seconds)\n    timestamp_ms = int(random_time.timestamp() * 1000)\n    timestamp_readable = random_time.strftime(\"%Y-%m-%d %H:%M:%S\")\n    return timestamp_ms, timestamp_readable\n# -----------------------------\n# 5️⃣ Generate a single event",
+        "detail": "scripts.rum_data_generator",
+        "documentation": {}
+    },
+    {
+        "label": "generate_event",
+        "kind": 2,
+        "importPath": "scripts.rum_data_generator",
+        "description": "scripts.rum_data_generator",
+        "peekOfCode": "def generate_event(country):\n    \"\"\"Generate a single synthetic RUM event\"\"\"\n    behavior = behavioral_map[country]\n    ts_ms, ts_readable = random_timestamp(start_date, end_date)\n    return {\n        \"session_id\": str(uuid.uuid4()),\n        \"view\": random.choice(pages),\n        \"country\": country,\n        \"device\": random.choice(behavior[\"device\"]),\n        \"browser\": random.choice(browsers),",
+        "detail": "scripts.rum_data_generator",
+        "documentation": {}
+    },
+    {
+        "label": "behavioral_map",
+        "kind": 5,
+        "importPath": "scripts.rum_data_generator",
+        "description": "scripts.rum_data_generator",
+        "peekOfCode": "behavioral_map = {\n    \"Nigeria\": {\"device\": [\"mobile\"] * 6 + [\"desktop\"] * 2 + [\"tablet\"] * 2,\n                \"actions\": [\"click\", \"scroll\", \"navigate\"],\n                \"duration\": (1000, 12000)},\n    \"Ghana\": {\"device\": [\"mobile\", \"desktop\"],\n              \"actions\": [\"scroll\", \"click\"],\n              \"duration\": (4000, 18000)},\n    \"Egypt\": {\"device\": [\"desktop\"] * 7 + [\"mobile\"] * 3,\n              \"actions\": [\"navigate\", \"scroll\", \"click\"],\n              \"duration\": (10000, 30000)},",
+        "detail": "scripts.rum_data_generator",
+        "documentation": {}
+    },
+    {
+        "label": "pages",
+        "kind": 5,
+        "importPath": "scripts.rum_data_generator",
+        "description": "scripts.rum_data_generator",
+        "peekOfCode": "pages = [\"/home\", \"/products\", \"/checkout\",\n         \"/blog\", \"/contact\", \"/pricing\", \"/dashboard\"]\nbrowsers = [\"Chrome\", \"Safari\", \"Edge\", \"Firefox\", \"Opera\"]\n# -----------------------------\n# 4️⃣ Define timestamps (6 months)\n# -----------------------------\nstart_date = datetime.now() - timedelta(days=180)  # 6 months ago\nend_date = datetime.now()\ndef random_timestamp(start, end):\n    \"\"\"Generate a random timestamp (ms) and human-readable timestamp between start and end\"\"\"",
+        "detail": "scripts.rum_data_generator",
+        "documentation": {}
+    },
+    {
+        "label": "browsers",
+        "kind": 5,
+        "importPath": "scripts.rum_data_generator",
+        "description": "scripts.rum_data_generator",
+        "peekOfCode": "browsers = [\"Chrome\", \"Safari\", \"Edge\", \"Firefox\", \"Opera\"]\n# -----------------------------\n# 4️⃣ Define timestamps (6 months)\n# -----------------------------\nstart_date = datetime.now() - timedelta(days=180)  # 6 months ago\nend_date = datetime.now()\ndef random_timestamp(start, end):\n    \"\"\"Generate a random timestamp (ms) and human-readable timestamp between start and end\"\"\"\n    delta = end - start\n    random_seconds = random.randint(0, int(delta.total_seconds()))",
+        "detail": "scripts.rum_data_generator",
+        "documentation": {}
+    },
+    {
+        "label": "start_date",
+        "kind": 5,
+        "importPath": "scripts.rum_data_generator",
+        "description": "scripts.rum_data_generator",
+        "peekOfCode": "start_date = datetime.now() - timedelta(days=180)  # 6 months ago\nend_date = datetime.now()\ndef random_timestamp(start, end):\n    \"\"\"Generate a random timestamp (ms) and human-readable timestamp between start and end\"\"\"\n    delta = end - start\n    random_seconds = random.randint(0, int(delta.total_seconds()))\n    random_time = start + timedelta(seconds=random_seconds)\n    timestamp_ms = int(random_time.timestamp() * 1000)\n    timestamp_readable = random_time.strftime(\"%Y-%m-%d %H:%M:%S\")\n    return timestamp_ms, timestamp_readable",
+        "detail": "scripts.rum_data_generator",
+        "documentation": {}
+    },
+    {
+        "label": "end_date",
+        "kind": 5,
+        "importPath": "scripts.rum_data_generator",
+        "description": "scripts.rum_data_generator",
+        "peekOfCode": "end_date = datetime.now()\ndef random_timestamp(start, end):\n    \"\"\"Generate a random timestamp (ms) and human-readable timestamp between start and end\"\"\"\n    delta = end - start\n    random_seconds = random.randint(0, int(delta.total_seconds()))\n    random_time = start + timedelta(seconds=random_seconds)\n    timestamp_ms = int(random_time.timestamp() * 1000)\n    timestamp_readable = random_time.strftime(\"%Y-%m-%d %H:%M:%S\")\n    return timestamp_ms, timestamp_readable\n# -----------------------------",
+        "detail": "scripts.rum_data_generator",
+        "documentation": {}
+    },
+    {
+        "label": "events",
+        "kind": 5,
+        "importPath": "scripts.rum_data_generator",
+        "description": "scripts.rum_data_generator",
+        "peekOfCode": "events = []\ncountries = list(behavioral_map.keys())\ntotal_events = 4000\nevents_per_country = total_events // len(countries)\nfor country in countries:\n    for _ in range(events_per_country):\n        events.append(generate_event(country))\n# -----------------------------\n# 7️⃣ Shuffle events for randomness\n# -----------------------------",
+        "detail": "scripts.rum_data_generator",
+        "documentation": {}
+    },
+    {
+        "label": "countries",
+        "kind": 5,
+        "importPath": "scripts.rum_data_generator",
+        "description": "scripts.rum_data_generator",
+        "peekOfCode": "countries = list(behavioral_map.keys())\ntotal_events = 4000\nevents_per_country = total_events // len(countries)\nfor country in countries:\n    for _ in range(events_per_country):\n        events.append(generate_event(country))\n# -----------------------------\n# 7️⃣ Shuffle events for randomness\n# -----------------------------\nrandom.shuffle(events)",
+        "detail": "scripts.rum_data_generator",
+        "documentation": {}
+    },
+    {
+        "label": "total_events",
+        "kind": 5,
+        "importPath": "scripts.rum_data_generator",
+        "description": "scripts.rum_data_generator",
+        "peekOfCode": "total_events = 4000\nevents_per_country = total_events // len(countries)\nfor country in countries:\n    for _ in range(events_per_country):\n        events.append(generate_event(country))\n# -----------------------------\n# 7️⃣ Shuffle events for randomness\n# -----------------------------\nrandom.shuffle(events)\n# -----------------------------",
+        "detail": "scripts.rum_data_generator",
+        "documentation": {}
+    },
+    {
+        "label": "events_per_country",
+        "kind": 5,
+        "importPath": "scripts.rum_data_generator",
+        "description": "scripts.rum_data_generator",
+        "peekOfCode": "events_per_country = total_events // len(countries)\nfor country in countries:\n    for _ in range(events_per_country):\n        events.append(generate_event(country))\n# -----------------------------\n# 7️⃣ Shuffle events for randomness\n# -----------------------------\nrandom.shuffle(events)\n# -----------------------------\n# 8️⃣ Save events to JSON",
+        "detail": "scripts.rum_data_generator",
+        "documentation": {}
+    }
+]
