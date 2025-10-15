@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Analytics | PulseFit Gym</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site-header">
+    <div class="container">
+      <div class="logo">PulseFit</div>
+      <nav class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="subscriptions.html">Plans</a>
+        <a href="trainers.html">Trainers</a>
+        <a href="contact.html">Contact</a>
+        <a href="analytics.html" class="active">Analytics</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Analytics Section -->
+  <section class="analytics-section">
+    <div class="container">
+      <h2>Real User Monitoring Dashboard</h2>
+      <p class="section-intro">Track user activity, location insights, and engagement across countries using Datadog RUM simulation data.</p>
+
+      <div class="charts-grid">
+        <!-- Chart 1 -->
+        <div class="chart-card">
+          <h3>Users by Country</h3>
+          <canvas id="countryChart"></canvas>
+        </div>
+
+        <!-- Chart 2 -->
+        <div class="chart-card">
+          <h3>Session Duration (min)</h3>
+          <canvas id="durationChart"></canvas>
+        </div>
+
+        <!-- Chart 3 -->
+        <div class="chart-card">
+          <h3>Active Sessions Over Time</h3>
+          <canvas id="sessionChart"></canvas>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>© 2025 PulseFit Gym. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    // ===== Users by Country =====
+    const countryCtx = document.getElementById('countryChart').getContext('2d');
+    new Chart(countryCtx, {
+      type: 'bar',
+      data: {
+        labels: ['Nigeria', 'Ghana', 'Egypt', 'Kenya', 'South Africa', 'UK'],
+        datasets: [{
+          label: 'Users',
+          data: [1200, 900, 650, 500, 400, 850],
+          backgroundColor: '#ff6b35',
+          borderRadius: 8
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: { y: { beginAtZero: true } }
+      }
+    });
+
+    // ===== Session Duration =====
+    const durationCtx = document.getElementById('durationChart').getContext('2d');
+    new Chart(durationCtx, {
+      type: 'doughnut',
+      data: {
+        labels: ['0–5 min', '5–15 min', '15–30 min', '30+ min'],
+        datasets: [{
+          data: [45, 30, 15, 10],
+          backgroundColor: ['#ff6b35', '#f7c948', '#36a2eb', '#7ed957']
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { position: 'bottom' } }
+      }
+    });
+
+    // ===== Active Sessions Over Time =====
+    const sessionCtx = document.getElementById('sessionChart').getContext('2d');
+    new Chart(sessionCtx, {
+      type: 'line',
+      data: {
+        labels: ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
+        datasets: [{
+          label: 'Active Sessions',
+          data: [100, 250, 400, 550, 480, 620, 780],
+          borderColor: '#ff6b35',
+          backgroundColor: 'rgba(255,107,53,0.2)',
+          tension: 0.3,
+          fill: true
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: { legend: { display: false } },
+        scales: {
+          y: { beginAtZero: true }
+        }
+      }
+    });
+  </script>
+
+</body>
+</html>
