@@ -16,7 +16,7 @@
         <a href="index.html">Home</a>
         <a href="subscriptions.html" class="active">Plans</a>
         <a href="trainers.html">Trainers</a>
-        <a href="analytics.html">Analytics</a>
+        <a href="analytics.html">Real User Data Monitoring Analytics</a>
         <a href="contact.html">Contact</a>
       </nav>
     </div>
@@ -40,7 +40,7 @@
         <li>Locker & shower access</li>
         <li>Free Wi-Fi</li>
       </ul>
-      <a href="contact.html" class="cta-button">Join Now</a>
+      <button class="cta-button" data-plan="Basic">Join Now</button>
     </div>
 
     <div class="plan-card popular">
@@ -51,7 +51,7 @@
         <li>Group fitness classes</li>
         <li>Nutrition guidance</li>
       </ul>
-      <a href="contact.html" class="cta-button">Join Now</a>
+      <button class="cta-button" data-plan="Pro">Join Now</button>
     </div>
 
     <div class="plan-card">
@@ -62,7 +62,7 @@
         <li>Personal trainer sessions</li>
         <li>Priority support</li>
       </ul>
-      <a href="contact.html" class="cta-button">Join Now</a>
+      <button class="cta-button" data-plan="Elite">Join Now</button>
     </div>
   </section>
 
@@ -71,5 +71,42 @@
     <p>© 2025 PulseFit Gym. All Rights Reserved.</p>
   </footer>
 
+  <!-- RUM Tracking Script -->
+  <script>
+    // Utility: format timestamp
+    function getTimestamp() {
+      const now = new Date();
+      return now.toLocaleString('en-NG', { timeZone: 'Africa/Lagos' });
+    }
+
+    // Add click tracking to all plan buttons
+    document.querySelectorAll('.cta-button').forEach(button => {
+      button.addEventListener('click', (event) => {
+        const planName = event.target.dataset.plan;
+        const timestamp = getTimestamp();
+
+        // Simulate tracking data
+        const trackingData = {
+          user_id: Math.floor(Math.random() * 10000), // simulate unique user
+          country: "Nigeria",
+          user_action: `${planName} package subscribed`,
+          timestamp: timestamp
+        };
+
+        console.log("📊 Subscription Event Logged:", trackingData);
+
+        // Optional: Save event to localStorage (for demo RUM dashboard)
+        let logs = JSON.parse(localStorage.getItem('pulsefit_logs')) || [];
+        logs.push(trackingData);
+        localStorage.setItem('pulsefit_logs', JSON.stringify(logs));
+
+        // Show message to user
+        alert(`✅ ${planName} package subscribed successfully!`);
+      });
+    });
+  </script>
+
 </body>
 </html>
+
+

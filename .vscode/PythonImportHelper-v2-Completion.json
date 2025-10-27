@@ -1,20 +1,20 @@
 [
     {
-        "label": "os",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "os",
-        "description": "os",
-        "detail": "os",
-        "documentation": {}
-    },
-    {
         "label": "json",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "json",
         "description": "json",
         "detail": "json",
+        "documentation": {}
+    },
+    {
+        "label": "csv",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "csv",
+        "description": "csv",
+        "detail": "csv",
         "documentation": {}
     },
     {
@@ -52,65 +52,65 @@
         "documentation": {}
     },
     {
-        "label": "random_timestamp",
-        "kind": 2,
-        "importPath": "scripts.rum_data_generator",
-        "description": "scripts.rum_data_generator",
-        "peekOfCode": "def random_timestamp(start, end):\n    \"\"\"Generate a random timestamp (ms) and human-readable timestamp between start and end\"\"\"\n    delta = end - start\n    random_seconds = random.randint(0, int(delta.total_seconds()))\n    random_time = start + timedelta(seconds=random_seconds)\n    timestamp_ms = int(random_time.timestamp() * 1000)\n    timestamp_readable = random_time.strftime(\"%Y-%m-%d %H:%M:%S\")\n    return timestamp_ms, timestamp_readable\n# -----------------------------\n# 5️⃣ Generate a single event",
-        "detail": "scripts.rum_data_generator",
+        "label": "os",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "os",
+        "description": "os",
+        "detail": "os",
         "documentation": {}
     },
     {
-        "label": "generate_event",
-        "kind": 2,
-        "importPath": "scripts.rum_data_generator",
-        "description": "scripts.rum_data_generator",
-        "peekOfCode": "def generate_event(country):\n    \"\"\"Generate a single synthetic RUM event\"\"\"\n    behavior = behavioral_map[country]\n    ts_ms, ts_readable = random_timestamp(start_date, end_date)\n    return {\n        \"session_id\": str(uuid.uuid4()),\n        \"view\": random.choice(pages),\n        \"country\": country,\n        \"device\": random.choice(behavior[\"device\"]),\n        \"browser\": random.choice(browsers),",
-        "detail": "scripts.rum_data_generator",
-        "documentation": {}
-    },
-    {
-        "label": "behavioral_map",
+        "label": "TARGET_EVENTS",
         "kind": 5,
         "importPath": "scripts.rum_data_generator",
         "description": "scripts.rum_data_generator",
-        "peekOfCode": "behavioral_map = {\n    \"Nigeria\": {\"device\": [\"mobile\"] * 6 + [\"desktop\"] * 2 + [\"tablet\"] * 2,\n                \"actions\": [\"click\", \"scroll\", \"navigate\"],\n                \"duration\": (1000, 12000)},\n    \"Ghana\": {\"device\": [\"mobile\", \"desktop\"],\n              \"actions\": [\"scroll\", \"click\"],\n              \"duration\": (4000, 18000)},\n    \"Egypt\": {\"device\": [\"desktop\"] * 7 + [\"mobile\"] * 3,\n              \"actions\": [\"navigate\", \"scroll\", \"click\"],\n              \"duration\": (10000, 30000)},",
+        "peekOfCode": "TARGET_EVENTS = 10000       # Total events to generate\nNUM_USERS = 3000           # Unique users\nMAX_ACTIONS_PER_SESSION = 6\nSTART_DATE = datetime.now() - timedelta(days=180)  # 6 months back\nCOUNTRIES = [\"Nigeria\", \"Ghana\", \"Egypt\", \"South Africa\", \"USA\", \"UK\"]\n# --- Possible actions ---\nACTIONS_FLOW = [\"visit home\", \"subscribed to Basic plans\", \"subscribed to pro plans\", \"subscribed to elite plans\", \"join_plan\", \"viewed alex johnson profile\",\n                \"viewed mia carter profile\", \"visit liam smith trainers\", \"visit contact\", \"sent message\"]\nevents = []\nwhile len(events) < TARGET_EVENTS:",
         "detail": "scripts.rum_data_generator",
         "documentation": {}
     },
     {
-        "label": "pages",
+        "label": "NUM_USERS",
         "kind": 5,
         "importPath": "scripts.rum_data_generator",
         "description": "scripts.rum_data_generator",
-        "peekOfCode": "pages = [\"/home\", \"/products\", \"/checkout\",\n         \"/blog\", \"/contact\", \"/pricing\", \"/dashboard\"]\nbrowsers = [\"Chrome\", \"Safari\", \"Edge\", \"Firefox\", \"Opera\"]\n# -----------------------------\n# 4️⃣ Define timestamps (6 months)\n# -----------------------------\nstart_date = datetime.now() - timedelta(days=180)  # 6 months ago\nend_date = datetime.now()\ndef random_timestamp(start, end):\n    \"\"\"Generate a random timestamp (ms) and human-readable timestamp between start and end\"\"\"",
+        "peekOfCode": "NUM_USERS = 3000           # Unique users\nMAX_ACTIONS_PER_SESSION = 6\nSTART_DATE = datetime.now() - timedelta(days=180)  # 6 months back\nCOUNTRIES = [\"Nigeria\", \"Ghana\", \"Egypt\", \"South Africa\", \"USA\", \"UK\"]\n# --- Possible actions ---\nACTIONS_FLOW = [\"visit home\", \"subscribed to Basic plans\", \"subscribed to pro plans\", \"subscribed to elite plans\", \"join_plan\", \"viewed alex johnson profile\",\n                \"viewed mia carter profile\", \"visit liam smith trainers\", \"visit contact\", \"sent message\"]\nevents = []\nwhile len(events) < TARGET_EVENTS:\n    user_id = random.randint(1000, 9999)",
         "detail": "scripts.rum_data_generator",
         "documentation": {}
     },
     {
-        "label": "browsers",
+        "label": "MAX_ACTIONS_PER_SESSION",
         "kind": 5,
         "importPath": "scripts.rum_data_generator",
         "description": "scripts.rum_data_generator",
-        "peekOfCode": "browsers = [\"Chrome\", \"Safari\", \"Edge\", \"Firefox\", \"Opera\"]\n# -----------------------------\n# 4️⃣ Define timestamps (6 months)\n# -----------------------------\nstart_date = datetime.now() - timedelta(days=180)  # 6 months ago\nend_date = datetime.now()\ndef random_timestamp(start, end):\n    \"\"\"Generate a random timestamp (ms) and human-readable timestamp between start and end\"\"\"\n    delta = end - start\n    random_seconds = random.randint(0, int(delta.total_seconds()))",
+        "peekOfCode": "MAX_ACTIONS_PER_SESSION = 6\nSTART_DATE = datetime.now() - timedelta(days=180)  # 6 months back\nCOUNTRIES = [\"Nigeria\", \"Ghana\", \"Egypt\", \"South Africa\", \"USA\", \"UK\"]\n# --- Possible actions ---\nACTIONS_FLOW = [\"visit home\", \"subscribed to Basic plans\", \"subscribed to pro plans\", \"subscribed to elite plans\", \"join_plan\", \"viewed alex johnson profile\",\n                \"viewed mia carter profile\", \"visit liam smith trainers\", \"visit contact\", \"sent message\"]\nevents = []\nwhile len(events) < TARGET_EVENTS:\n    user_id = random.randint(1000, 9999)\n    country = random.choice(COUNTRIES)",
         "detail": "scripts.rum_data_generator",
         "documentation": {}
     },
     {
-        "label": "start_date",
+        "label": "START_DATE",
         "kind": 5,
         "importPath": "scripts.rum_data_generator",
         "description": "scripts.rum_data_generator",
-        "peekOfCode": "start_date = datetime.now() - timedelta(days=180)  # 6 months ago\nend_date = datetime.now()\ndef random_timestamp(start, end):\n    \"\"\"Generate a random timestamp (ms) and human-readable timestamp between start and end\"\"\"\n    delta = end - start\n    random_seconds = random.randint(0, int(delta.total_seconds()))\n    random_time = start + timedelta(seconds=random_seconds)\n    timestamp_ms = int(random_time.timestamp() * 1000)\n    timestamp_readable = random_time.strftime(\"%Y-%m-%d %H:%M:%S\")\n    return timestamp_ms, timestamp_readable",
+        "peekOfCode": "START_DATE = datetime.now() - timedelta(days=180)  # 6 months back\nCOUNTRIES = [\"Nigeria\", \"Ghana\", \"Egypt\", \"South Africa\", \"USA\", \"UK\"]\n# --- Possible actions ---\nACTIONS_FLOW = [\"visit home\", \"subscribed to Basic plans\", \"subscribed to pro plans\", \"subscribed to elite plans\", \"join_plan\", \"viewed alex johnson profile\",\n                \"viewed mia carter profile\", \"visit liam smith trainers\", \"visit contact\", \"sent message\"]\nevents = []\nwhile len(events) < TARGET_EVENTS:\n    user_id = random.randint(1000, 9999)\n    country = random.choice(COUNTRIES)\n    # Each user can have 1-2 sessions",
         "detail": "scripts.rum_data_generator",
         "documentation": {}
     },
     {
-        "label": "end_date",
+        "label": "COUNTRIES",
         "kind": 5,
         "importPath": "scripts.rum_data_generator",
         "description": "scripts.rum_data_generator",
-        "peekOfCode": "end_date = datetime.now()\ndef random_timestamp(start, end):\n    \"\"\"Generate a random timestamp (ms) and human-readable timestamp between start and end\"\"\"\n    delta = end - start\n    random_seconds = random.randint(0, int(delta.total_seconds()))\n    random_time = start + timedelta(seconds=random_seconds)\n    timestamp_ms = int(random_time.timestamp() * 1000)\n    timestamp_readable = random_time.strftime(\"%Y-%m-%d %H:%M:%S\")\n    return timestamp_ms, timestamp_readable\n# -----------------------------",
+        "peekOfCode": "COUNTRIES = [\"Nigeria\", \"Ghana\", \"Egypt\", \"South Africa\", \"USA\", \"UK\"]\n# --- Possible actions ---\nACTIONS_FLOW = [\"visit home\", \"subscribed to Basic plans\", \"subscribed to pro plans\", \"subscribed to elite plans\", \"join_plan\", \"viewed alex johnson profile\",\n                \"viewed mia carter profile\", \"visit liam smith trainers\", \"visit contact\", \"sent message\"]\nevents = []\nwhile len(events) < TARGET_EVENTS:\n    user_id = random.randint(1000, 9999)\n    country = random.choice(COUNTRIES)\n    # Each user can have 1-2 sessions\n    num_sessions = random.choice([1, 2])",
+        "detail": "scripts.rum_data_generator",
+        "documentation": {}
+    },
+    {
+        "label": "ACTIONS_FLOW",
+        "kind": 5,
+        "importPath": "scripts.rum_data_generator",
+        "description": "scripts.rum_data_generator",
+        "peekOfCode": "ACTIONS_FLOW = [\"visit home\", \"subscribed to Basic plans\", \"subscribed to pro plans\", \"subscribed to elite plans\", \"join_plan\", \"viewed alex johnson profile\",\n                \"viewed mia carter profile\", \"visit liam smith trainers\", \"visit contact\", \"sent message\"]\nevents = []\nwhile len(events) < TARGET_EVENTS:\n    user_id = random.randint(1000, 9999)\n    country = random.choice(COUNTRIES)\n    # Each user can have 1-2 sessions\n    num_sessions = random.choice([1, 2])\n    for _ in range(num_sessions):\n        session_id = str(uuid.uuid4())  # unique session ID",
         "detail": "scripts.rum_data_generator",
         "documentation": {}
     },
@@ -119,34 +119,25 @@
         "kind": 5,
         "importPath": "scripts.rum_data_generator",
         "description": "scripts.rum_data_generator",
-        "peekOfCode": "events = []\ncountries = list(behavioral_map.keys())\ntotal_events = 4000\nevents_per_country = total_events // len(countries)\nfor country in countries:\n    for _ in range(events_per_country):\n        events.append(generate_event(country))\n# -----------------------------\n# 7️⃣ Shuffle events for randomness\n# -----------------------------",
+        "peekOfCode": "events = []\nwhile len(events) < TARGET_EVENTS:\n    user_id = random.randint(1000, 9999)\n    country = random.choice(COUNTRIES)\n    # Each user can have 1-2 sessions\n    num_sessions = random.choice([1, 2])\n    for _ in range(num_sessions):\n        session_id = str(uuid.uuid4())  # unique session ID\n        base_time = START_DATE + timedelta(days=random.randint(0, 180))\n        num_actions = random.randint(2, MAX_ACTIONS_PER_SESSION)",
         "detail": "scripts.rum_data_generator",
         "documentation": {}
     },
     {
-        "label": "countries",
+        "label": "json_path",
         "kind": 5,
         "importPath": "scripts.rum_data_generator",
         "description": "scripts.rum_data_generator",
-        "peekOfCode": "countries = list(behavioral_map.keys())\ntotal_events = 4000\nevents_per_country = total_events // len(countries)\nfor country in countries:\n    for _ in range(events_per_country):\n        events.append(generate_event(country))\n# -----------------------------\n# 7️⃣ Shuffle events for randomness\n# -----------------------------\nrandom.shuffle(events)",
+        "peekOfCode": "json_path = \"data/rum_generated.json\"\nwith open(json_path, \"w\", encoding=\"utf-8\") as json_file:\n    json.dump(events, json_file, indent=4)\n# --- Save to CSV ---\ncsv_path = \"data/rum_generated.csv\"\nwith open(csv_path, \"w\", newline=\"\", encoding=\"utf-8\") as csv_file:\n    writer = csv.DictWriter(csv_file, fieldnames=events[0].keys())\n    writer.writeheader()\n    writer.writerows(events)\nprint(",
         "detail": "scripts.rum_data_generator",
         "documentation": {}
     },
     {
-        "label": "total_events",
+        "label": "csv_path",
         "kind": 5,
         "importPath": "scripts.rum_data_generator",
         "description": "scripts.rum_data_generator",
-        "peekOfCode": "total_events = 4000\nevents_per_country = total_events // len(countries)\nfor country in countries:\n    for _ in range(events_per_country):\n        events.append(generate_event(country))\n# -----------------------------\n# 7️⃣ Shuffle events for randomness\n# -----------------------------\nrandom.shuffle(events)\n# -----------------------------",
-        "detail": "scripts.rum_data_generator",
-        "documentation": {}
-    },
-    {
-        "label": "events_per_country",
-        "kind": 5,
-        "importPath": "scripts.rum_data_generator",
-        "description": "scripts.rum_data_generator",
-        "peekOfCode": "events_per_country = total_events // len(countries)\nfor country in countries:\n    for _ in range(events_per_country):\n        events.append(generate_event(country))\n# -----------------------------\n# 7️⃣ Shuffle events for randomness\n# -----------------------------\nrandom.shuffle(events)\n# -----------------------------\n# 8️⃣ Save events to JSON",
+        "peekOfCode": "csv_path = \"data/rum_generated.csv\"\nwith open(csv_path, \"w\", newline=\"\", encoding=\"utf-8\") as csv_file:\n    writer = csv.DictWriter(csv_file, fieldnames=events[0].keys())\n    writer.writeheader()\n    writer.writerows(events)\nprint(\n    f\"✅ Successfully generated {len(events)} realistic user events with session IDs!\")\nprint(\"📁 Files saved to: data/rum_generated.json and data/rum_generated.csv\")",
         "detail": "scripts.rum_data_generator",
         "documentation": {}
     }

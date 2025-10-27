@@ -1,0 +1,6 @@
+print(34/6)
+print(5.66 + 1.5)
+print(34/4)
+print(7.5/2)
+print(1.75/2)
+print(29/4)

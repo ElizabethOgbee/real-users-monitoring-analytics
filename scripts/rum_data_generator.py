@@ -1,110 +1,90 @@
-import os
 import json
+import csv
 import random
 import uuid
 from datetime import datetime, timedelta
+import os
 
-# -----------------------------
-# 1️⃣ Ensure 'data' folder exists
-# -----------------------------
+# --- Ensure data folder exists ---
 os.makedirs("data", exist_ok=True)
 
-# -----------------------------
-# 2️⃣ Define behavioral rules by region
-# -----------------------------
-behavioral_map = {
-    "Nigeria": {"device": ["mobile"] * 6 + ["desktop"] * 2 + ["tablet"] * 2,
-                "actions": ["click", "scroll", "navigate"],
-                "duration": (1000, 12000)},
-    "Ghana": {"device": ["mobile", "desktop"],
-              "actions": ["scroll", "click"],
-              "duration": (4000, 18000)},
-    "Egypt": {"device": ["desktop"] * 7 + ["mobile"] * 3,
-              "actions": ["navigate", "scroll", "click"],
-              "duration": (10000, 30000)},
-    "South Africa": {"device": ["mobile", "desktop"],
-                     "actions": ["form_submit", "click", "navigate"],
-                     "duration": (6000, 20000)},
-    "Kenya": {"device": ["mobile"] * 8 + ["desktop"] * 2,
-              "actions": ["scroll", "click"],
-              "duration": (1500, 10000)},
-    "United Kingdom": {"device": ["desktop"] * 8 + ["tablet"] * 2,
-                       "actions": ["navigate", "scroll"],
-                       "duration": (12000, 40000)},
-    "United States": {"device": ["desktop", "tablet"],
-                      "actions": ["navigate", "click", "scroll"],
-                      "duration": (10000, 30000)},
-    "Japan": {"device": ["desktop"] * 9 + ["mobile"],
-              "actions": ["form_submit", "navigate"],
-              "duration": (15000, 35000)},
-}
+# --- Settings ---
+TARGET_EVENTS = 10000       # Total events to generate
+NUM_USERS = 3000           # Unique users
+MAX_ACTIONS_PER_SESSION = 6
+START_DATE = datetime.now() - timedelta(days=180)  # 6 months back
+COUNTRIES = ["Nigeria", "Ghana", "Egypt", "South Africa", "USA", "UK"]
 
-# -----------------------------
-# 3️⃣ Define pages and browsers
-# -----------------------------
-pages = ["/home", "/products", "/checkout",
-         "/blog", "/contact", "/pricing", "/dashboard"]
-browsers = ["Chrome", "Safari", "Edge", "Firefox", "Opera"]
+# --- Possible actions ---
+ACTIONS_FLOW = ["visit home", "subscribed to Basic plans", "subscribed to pro plans", "subscribed to elite plans", "join_plan", "viewed alex johnson profile",
+                "viewed mia carter profile", "visit liam smith trainers", "visit contact", "sent message"]
 
-# -----------------------------
-# 4️⃣ Define timestamps (6 months)
-# -----------------------------
-start_date = datetime.now() - timedelta(days=180)  # 6 months ago
-end_date = datetime.now()
-
-
-def random_timestamp(start, end):
-    """Generate a random timestamp (ms) and human-readable timestamp between start and end"""
-    delta = end - start
-    random_seconds = random.randint(0, int(delta.total_seconds()))
-    random_time = start + timedelta(seconds=random_seconds)
-    timestamp_ms = int(random_time.timestamp() * 1000)
-    timestamp_readable = random_time.strftime("%Y-%m-%d %H:%M:%S")
-    return timestamp_ms, timestamp_readable
-
-# -----------------------------
-# 5️⃣ Generate a single event
-# -----------------------------
-
-
-def generate_event(country):
-    """Generate a single synthetic RUM event"""
-    behavior = behavioral_map[country]
-    ts_ms, ts_readable = random_timestamp(start_date, end_date)
-    return {
-        "session_id": str(uuid.uuid4()),
-        "view": random.choice(pages),
-        "country": country,
-        "device": random.choice(behavior["device"]),
-        "browser": random.choice(browsers),
-        "duration": random.randint(*behavior["duration"]),
-        "user_action": random.choice(behavior["actions"]),
-        "timestamp": ts_ms,
-        "timestamp_readable": ts_readable
-    }
-
-
-# -----------------------------
-# 6️⃣ Generate all events (4,000)
-# -----------------------------
 events = []
-countries = list(behavioral_map.keys())
-total_events = 4000
-events_per_country = total_events // len(countries)
 
-for country in countries:
-    for _ in range(events_per_country):
-        events.append(generate_event(country))
+while len(events) < TARGET_EVENTS:
+    user_id = random.randint(1000, 9999)
+    country = random.choice(COUNTRIES)
 
-# -----------------------------
-# 7️⃣ Shuffle events for randomness
-# -----------------------------
+    # Each user can have 1-2 sessions
+    num_sessions = random.choice([1, 2])
+    for _ in range(num_sessions):
+        session_id = str(uuid.uuid4())  # unique session ID
+        base_time = START_DATE + timedelta(days=random.randint(0, 180))
+        num_actions = random.randint(2, MAX_ACTIONS_PER_SESSION)
+
+        # Generate realistic actions per session
+        user_actions = ["visit home"]
+        if random.random() < 0.8:
+            user_actions.append("visit plans")
+            if random.random() < 0.3:
+                user_actions.append("join_plan")
+        if random.random() < 0.5:
+            user_actions.append("visit trainers")
+        if random.random() < 0.4:
+            user_actions.append("visit contact")
+            if random.random() < 0.2:
+                user_actions.append("sent message")
+
+        # Shuffle for randomness and limit to num_actions
+        random.shuffle(user_actions)
+        user_actions = user_actions[:num_actions]
+
+        # Generate events with realistic time spacing
+        for i, action in enumerate(user_actions):
+            timestamp = base_time + timedelta(
+                minutes=random.randint(5, 180) * i,
+                seconds=random.randint(0, 59)
+            )
+            event = {
+                "user_id": user_id,
+                "session_id": session_id,
+                "country": country,
+                "user_action": action,
+                "timestamp": int(timestamp.timestamp() * 1000),  # UNIX ms
+                "readable_timestamp": timestamp.strftime("%y-%m-%d %I:%M:%S %p")
+
+            }
+            events.append(event)
+            if len(events) >= TARGET_EVENTS:
+                break
+        if len(events) >= TARGET_EVENTS:
+            break
+
+# Shuffle events for realism
 random.shuffle(events)
 
-# -----------------------------
-# 8️⃣ Save events to JSON
-# -----------------------------
-with open("data/rum_generated.json", "w") as f:
-    json.dump(events, f, indent=2)
+# --- Save to JSON ---
+json_path = "data/rum_generated.json"
+with open(json_path, "w", encoding="utf-8") as json_file:
+    json.dump(events, json_file, indent=4)
 
-print("✅ 4,000 synthetic RUM events saved locally with 6-month randomized timestamps and country order!")
+# --- Save to CSV ---
+csv_path = "data/rum_generated.csv"
+with open(csv_path, "w", newline="", encoding="utf-8") as csv_file:
+    writer = csv.DictWriter(csv_file, fieldnames=events[0].keys())
+    writer.writeheader()
+    writer.writerows(events)
+
+print(
+    f"✅ Successfully generated {len(events)} realistic user events with session IDs!")
+print("📁 Files saved to: data/rum_generated.json and data/rum_generated.csv")

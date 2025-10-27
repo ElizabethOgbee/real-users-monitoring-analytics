@@ -16,7 +16,7 @@
         <a href="index.html">Home</a>
         <a href="subscriptions.html">Plans</a>
         <a href="trainers.html" class="active">Trainers</a>
-        <a href="analytics.html">Analytics</a>
+        <a href="analytics.html">Real User Data Monitoring Analytics</a>
         <a href="contact.html">Contact</a>
       </nav>
     </div>
@@ -33,21 +33,21 @@
           <img src="../website/images/trainer.jpg" alt="Trainer Alex">
           <h3>Alex Johnson</h3>
           <p>Strength & Conditioning Coach</p>
-          <button class="view-profile">View Profile</button>
+          <button class="view-profile" data-trainer="Alex Johnson">View Profile</button>
         </div>
 
         <div class="trainer-card">
           <img src="images/trainer 3.jpg" alt="Trainer Mia">
           <h3>Mia Carter</h3>
           <p>Yoga & Flexibility Specialist</p>
-          <button class="view-profile">View Profile</button>
+          <button class="view-profile" data-trainer="Mia Carter">View Profile</button>
         </div>
 
         <div class="trainer-card">
           <img src="images/trainer 2.jpg" alt="Trainer Liam">
           <h3>Liam Smith</h3>
           <p>Cardio & Endurance Trainer</p>
-          <button class="view-profile">View Profile</button>
+          <button class="view-profile" data-trainer="Liam Smith">View Profile</button>
         </div>
       </div>
     </div>
@@ -57,6 +57,43 @@
   <footer>
     <p>© 2025 PulseFit Gym. All Rights Reserved.</p>
   </footer>
+
+  <!-- RUM Tracking Script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      // Utility: get readable timestamp
+      function getTimestamp() {
+        const now = new Date();
+        return now.toLocaleString('en-NG', { timeZone: 'Africa/Lagos' });
+      }
+
+      // Add event listener to all trainer buttons
+      document.querySelectorAll('.view-profile').forEach(button => {
+        button.addEventListener('click', (event) => {
+          const trainerName = event.target.dataset.trainer;
+          const timestamp = getTimestamp();
+
+          // Create tracking data
+          const trackingData = {
+            user_id: Math.floor(Math.random() * 10000),
+            country: "Nigeria",
+            user_action: `Viewed Trainer: ${trainerName}`,
+            timestamp: timestamp
+          };
+
+          console.log("📊 Trainer Profile Viewed:", trackingData);
+
+          // Store event in localStorage (for RUM dashboard later)
+          let logs = JSON.parse(localStorage.getItem('pulsefit_logs')) || [];
+          logs.push(trackingData);
+          localStorage.setItem('pulsefit_logs', JSON.stringify(logs));
+
+          // Show confirmation
+          alert(`👟 You viewed ${trainerName}'s profile.`);
+        });
+      });
+    });
+  </script>
 
 </body>
 </html>
