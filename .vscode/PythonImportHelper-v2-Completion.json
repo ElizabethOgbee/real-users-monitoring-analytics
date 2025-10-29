@@ -65,7 +65,7 @@
         "kind": 5,
         "importPath": "scripts.rum_data_generator",
         "description": "scripts.rum_data_generator",
-        "peekOfCode": "TARGET_EVENTS = 10000       # Total events to generate\nNUM_USERS = 3000           # Unique users\nMAX_ACTIONS_PER_SESSION = 6\nSTART_DATE = datetime.now() - timedelta(days=180)  # 6 months back\nCOUNTRIES = [\"Nigeria\", \"Ghana\", \"Egypt\", \"South Africa\", \"USA\", \"UK\"]\n# --- Possible actions ---\nACTIONS_FLOW = [\"visit home\", \"subscribed to Basic plans\", \"subscribed to pro plans\", \"subscribed to elite plans\", \"join_plan\", \"viewed alex johnson profile\",\n                \"viewed mia carter profile\", \"visit liam smith trainers\", \"visit contact\", \"sent message\"]\nevents = []\nwhile len(events) < TARGET_EVENTS:",
+        "peekOfCode": "TARGET_EVENTS = 10000       # Total events to generate\nNUM_USERS = 3000            # Unique users\nMAX_ACTIONS_PER_SESSION = 6\nSTART_DATE = datetime.now() - timedelta(days=180)  # 6 months back\nCOUNTRIES = [\"Nigeria\", \"Ghana\", \"Egypt\", \"South Africa\", \"USA\", \"UK\"]\n# --- Plans and Trainers ---\nPLANS = [\"Basic\", \"Pro\", \"Elite\"]\nTRAINERS = [\"Alex Johnson\", \"Mia Carter\",\n            \"Liam Smith\", \"Sophia Brown\", \"Noah Wilson\", 'visit home', 'visit plans', 'visit trainers']\nevents = []",
         "detail": "scripts.rum_data_generator",
         "documentation": {}
     },
@@ -74,7 +74,7 @@
         "kind": 5,
         "importPath": "scripts.rum_data_generator",
         "description": "scripts.rum_data_generator",
-        "peekOfCode": "NUM_USERS = 3000           # Unique users\nMAX_ACTIONS_PER_SESSION = 6\nSTART_DATE = datetime.now() - timedelta(days=180)  # 6 months back\nCOUNTRIES = [\"Nigeria\", \"Ghana\", \"Egypt\", \"South Africa\", \"USA\", \"UK\"]\n# --- Possible actions ---\nACTIONS_FLOW = [\"visit home\", \"subscribed to Basic plans\", \"subscribed to pro plans\", \"subscribed to elite plans\", \"join_plan\", \"viewed alex johnson profile\",\n                \"viewed mia carter profile\", \"visit liam smith trainers\", \"visit contact\", \"sent message\"]\nevents = []\nwhile len(events) < TARGET_EVENTS:\n    user_id = random.randint(1000, 9999)",
+        "peekOfCode": "NUM_USERS = 3000            # Unique users\nMAX_ACTIONS_PER_SESSION = 6\nSTART_DATE = datetime.now() - timedelta(days=180)  # 6 months back\nCOUNTRIES = [\"Nigeria\", \"Ghana\", \"Egypt\", \"South Africa\", \"USA\", \"UK\"]\n# --- Plans and Trainers ---\nPLANS = [\"Basic\", \"Pro\", \"Elite\"]\nTRAINERS = [\"Alex Johnson\", \"Mia Carter\",\n            \"Liam Smith\", \"Sophia Brown\", \"Noah Wilson\", 'visit home', 'visit plans', 'visit trainers']\nevents = []\nwhile len(events) < TARGET_EVENTS:",
         "detail": "scripts.rum_data_generator",
         "documentation": {}
     },
@@ -83,7 +83,7 @@
         "kind": 5,
         "importPath": "scripts.rum_data_generator",
         "description": "scripts.rum_data_generator",
-        "peekOfCode": "MAX_ACTIONS_PER_SESSION = 6\nSTART_DATE = datetime.now() - timedelta(days=180)  # 6 months back\nCOUNTRIES = [\"Nigeria\", \"Ghana\", \"Egypt\", \"South Africa\", \"USA\", \"UK\"]\n# --- Possible actions ---\nACTIONS_FLOW = [\"visit home\", \"subscribed to Basic plans\", \"subscribed to pro plans\", \"subscribed to elite plans\", \"join_plan\", \"viewed alex johnson profile\",\n                \"viewed mia carter profile\", \"visit liam smith trainers\", \"visit contact\", \"sent message\"]\nevents = []\nwhile len(events) < TARGET_EVENTS:\n    user_id = random.randint(1000, 9999)\n    country = random.choice(COUNTRIES)",
+        "peekOfCode": "MAX_ACTIONS_PER_SESSION = 6\nSTART_DATE = datetime.now() - timedelta(days=180)  # 6 months back\nCOUNTRIES = [\"Nigeria\", \"Ghana\", \"Egypt\", \"South Africa\", \"USA\", \"UK\"]\n# --- Plans and Trainers ---\nPLANS = [\"Basic\", \"Pro\", \"Elite\"]\nTRAINERS = [\"Alex Johnson\", \"Mia Carter\",\n            \"Liam Smith\", \"Sophia Brown\", \"Noah Wilson\", 'visit home', 'visit plans', 'visit trainers']\nevents = []\nwhile len(events) < TARGET_EVENTS:\n    user_id = random.randint(1000, 9999)",
         "detail": "scripts.rum_data_generator",
         "documentation": {}
     },
@@ -92,7 +92,7 @@
         "kind": 5,
         "importPath": "scripts.rum_data_generator",
         "description": "scripts.rum_data_generator",
-        "peekOfCode": "START_DATE = datetime.now() - timedelta(days=180)  # 6 months back\nCOUNTRIES = [\"Nigeria\", \"Ghana\", \"Egypt\", \"South Africa\", \"USA\", \"UK\"]\n# --- Possible actions ---\nACTIONS_FLOW = [\"visit home\", \"subscribed to Basic plans\", \"subscribed to pro plans\", \"subscribed to elite plans\", \"join_plan\", \"viewed alex johnson profile\",\n                \"viewed mia carter profile\", \"visit liam smith trainers\", \"visit contact\", \"sent message\"]\nevents = []\nwhile len(events) < TARGET_EVENTS:\n    user_id = random.randint(1000, 9999)\n    country = random.choice(COUNTRIES)\n    # Each user can have 1-2 sessions",
+        "peekOfCode": "START_DATE = datetime.now() - timedelta(days=180)  # 6 months back\nCOUNTRIES = [\"Nigeria\", \"Ghana\", \"Egypt\", \"South Africa\", \"USA\", \"UK\"]\n# --- Plans and Trainers ---\nPLANS = [\"Basic\", \"Pro\", \"Elite\"]\nTRAINERS = [\"Alex Johnson\", \"Mia Carter\",\n            \"Liam Smith\", \"Sophia Brown\", \"Noah Wilson\", 'visit home', 'visit plans', 'visit trainers']\nevents = []\nwhile len(events) < TARGET_EVENTS:\n    user_id = random.randint(1000, 9999)\n    country = random.choice(COUNTRIES)",
         "detail": "scripts.rum_data_generator",
         "documentation": {}
     },
@@ -101,16 +101,25 @@
         "kind": 5,
         "importPath": "scripts.rum_data_generator",
         "description": "scripts.rum_data_generator",
-        "peekOfCode": "COUNTRIES = [\"Nigeria\", \"Ghana\", \"Egypt\", \"South Africa\", \"USA\", \"UK\"]\n# --- Possible actions ---\nACTIONS_FLOW = [\"visit home\", \"subscribed to Basic plans\", \"subscribed to pro plans\", \"subscribed to elite plans\", \"join_plan\", \"viewed alex johnson profile\",\n                \"viewed mia carter profile\", \"visit liam smith trainers\", \"visit contact\", \"sent message\"]\nevents = []\nwhile len(events) < TARGET_EVENTS:\n    user_id = random.randint(1000, 9999)\n    country = random.choice(COUNTRIES)\n    # Each user can have 1-2 sessions\n    num_sessions = random.choice([1, 2])",
+        "peekOfCode": "COUNTRIES = [\"Nigeria\", \"Ghana\", \"Egypt\", \"South Africa\", \"USA\", \"UK\"]\n# --- Plans and Trainers ---\nPLANS = [\"Basic\", \"Pro\", \"Elite\"]\nTRAINERS = [\"Alex Johnson\", \"Mia Carter\",\n            \"Liam Smith\", \"Sophia Brown\", \"Noah Wilson\", 'visit home', 'visit plans', 'visit trainers']\nevents = []\nwhile len(events) < TARGET_EVENTS:\n    user_id = random.randint(1000, 9999)\n    country = random.choice(COUNTRIES)\n    # Each user can have 1-2 sessions",
         "detail": "scripts.rum_data_generator",
         "documentation": {}
     },
     {
-        "label": "ACTIONS_FLOW",
+        "label": "PLANS",
         "kind": 5,
         "importPath": "scripts.rum_data_generator",
         "description": "scripts.rum_data_generator",
-        "peekOfCode": "ACTIONS_FLOW = [\"visit home\", \"subscribed to Basic plans\", \"subscribed to pro plans\", \"subscribed to elite plans\", \"join_plan\", \"viewed alex johnson profile\",\n                \"viewed mia carter profile\", \"visit liam smith trainers\", \"visit contact\", \"sent message\"]\nevents = []\nwhile len(events) < TARGET_EVENTS:\n    user_id = random.randint(1000, 9999)\n    country = random.choice(COUNTRIES)\n    # Each user can have 1-2 sessions\n    num_sessions = random.choice([1, 2])\n    for _ in range(num_sessions):\n        session_id = str(uuid.uuid4())  # unique session ID",
+        "peekOfCode": "PLANS = [\"Basic\", \"Pro\", \"Elite\"]\nTRAINERS = [\"Alex Johnson\", \"Mia Carter\",\n            \"Liam Smith\", \"Sophia Brown\", \"Noah Wilson\", 'visit home', 'visit plans', 'visit trainers']\nevents = []\nwhile len(events) < TARGET_EVENTS:\n    user_id = random.randint(1000, 9999)\n    country = random.choice(COUNTRIES)\n    # Each user can have 1-2 sessions\n    num_sessions = random.choice([1, 2])\n    for _ in range(num_sessions):",
+        "detail": "scripts.rum_data_generator",
+        "documentation": {}
+    },
+    {
+        "label": "TRAINERS",
+        "kind": 5,
+        "importPath": "scripts.rum_data_generator",
+        "description": "scripts.rum_data_generator",
+        "peekOfCode": "TRAINERS = [\"Alex Johnson\", \"Mia Carter\",\n            \"Liam Smith\", \"Sophia Brown\", \"Noah Wilson\", 'visit home', 'visit plans', 'visit trainers']\nevents = []\nwhile len(events) < TARGET_EVENTS:\n    user_id = random.randint(1000, 9999)\n    country = random.choice(COUNTRIES)\n    # Each user can have 1-2 sessions\n    num_sessions = random.choice([1, 2])\n    for _ in range(num_sessions):\n        session_id = str(uuid.uuid4())  # unique session ID",
         "detail": "scripts.rum_data_generator",
         "documentation": {}
     },
@@ -119,7 +128,7 @@
         "kind": 5,
         "importPath": "scripts.rum_data_generator",
         "description": "scripts.rum_data_generator",
-        "peekOfCode": "events = []\nwhile len(events) < TARGET_EVENTS:\n    user_id = random.randint(1000, 9999)\n    country = random.choice(COUNTRIES)\n    # Each user can have 1-2 sessions\n    num_sessions = random.choice([1, 2])\n    for _ in range(num_sessions):\n        session_id = str(uuid.uuid4())  # unique session ID\n        base_time = START_DATE + timedelta(days=random.randint(0, 180))\n        num_actions = random.randint(2, MAX_ACTIONS_PER_SESSION)",
+        "peekOfCode": "events = []\nwhile len(events) < TARGET_EVENTS:\n    user_id = random.randint(1000, 9999)\n    country = random.choice(COUNTRIES)\n    # Each user can have 1-2 sessions\n    num_sessions = random.choice([1, 2])\n    for _ in range(num_sessions):\n        session_id = str(uuid.uuid4())  # unique session ID\n        base_time = START_DATE + timedelta(\n            days=random.randint(0, 180),",
         "detail": "scripts.rum_data_generator",
         "documentation": {}
     },
@@ -137,7 +146,7 @@
         "kind": 5,
         "importPath": "scripts.rum_data_generator",
         "description": "scripts.rum_data_generator",
-        "peekOfCode": "csv_path = \"data/rum_generated.csv\"\nwith open(csv_path, \"w\", newline=\"\", encoding=\"utf-8\") as csv_file:\n    writer = csv.DictWriter(csv_file, fieldnames=events[0].keys())\n    writer.writeheader()\n    writer.writerows(events)\nprint(\n    f\"✅ Successfully generated {len(events)} realistic user events with session IDs!\")\nprint(\"📁 Files saved to: data/rum_generated.json and data/rum_generated.csv\")",
+        "peekOfCode": "csv_path = \"data/rum_generated.csv\"\nwith open(csv_path, \"w\", newline=\"\", encoding=\"utf-8\") as csv_file:\n    writer = csv.DictWriter(csv_file, fieldnames=events[0].keys())\n    writer.writeheader()\n    writer.writerows(events)\nprint(\n    f\"✅ Successfully generated {len(events)} realistic user events with sessions, plans, and trainers!\")\nprint(\"📁 Files saved to: data/rum_generated.json and data/rum_generated.csv\")",
         "detail": "scripts.rum_data_generator",
         "documentation": {}
     }

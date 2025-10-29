@@ -10,14 +10,15 @@ os.makedirs("data", exist_ok=True)
 
 # --- Settings ---
 TARGET_EVENTS = 10000       # Total events to generate
-NUM_USERS = 3000           # Unique users
+NUM_USERS = 3000            # Unique users
 MAX_ACTIONS_PER_SESSION = 6
 START_DATE = datetime.now() - timedelta(days=180)  # 6 months back
 COUNTRIES = ["Nigeria", "Ghana", "Egypt", "South Africa", "USA", "UK"]
 
-# --- Possible actions ---
-ACTIONS_FLOW = ["visit home", "subscribed to Basic plans", "subscribed to pro plans", "subscribed to elite plans", "join_plan", "viewed alex johnson profile",
-                "viewed mia carter profile", "visit liam smith trainers", "visit contact", "sent message"]
+# --- Plans and Trainers ---
+PLANS = ["Basic", "Pro", "Elite"]
+TRAINERS = ["Alex Johnson", "Mia Carter",
+            "Liam Smith", "Sophia Brown", "Noah Wilson", 'visit home', 'visit plans', 'visit trainers']
 
 events = []
 
@@ -29,27 +30,39 @@ while len(events) < TARGET_EVENTS:
     num_sessions = random.choice([1, 2])
     for _ in range(num_sessions):
         session_id = str(uuid.uuid4())  # unique session ID
-        base_time = START_DATE + timedelta(days=random.randint(0, 180))
+        base_time = START_DATE + timedelta(
+            days=random.randint(0, 180),
+            hours=random.randint(0, 23),
+            minutes=random.randint(0, 59)
+        )
         num_actions = random.randint(2, MAX_ACTIONS_PER_SESSION)
 
-        # Generate realistic actions per session
+        # --- Generate realistic user actions per session ---
         user_actions = ["visit home"]
+
+        # Visiting plans
         if random.random() < 0.8:
-            user_actions.append("visit plans")
-            if random.random() < 0.3:
-                user_actions.append("join_plan")
+            plan = random.choice(PLANS)
+            user_actions.append(f"visit {plan} plan")
+            if random.random() < 0.3:  # joined a plan
+                user_actions.append(f"subscribed to {plan} plan")
+
+        # Visiting trainers
         if random.random() < 0.5:
-            user_actions.append("visit trainers")
+            trainer = random.choice(TRAINERS)
+            user_actions.append(f"viewed {trainer} profile")
+
+        # Visiting contact
         if random.random() < 0.4:
             user_actions.append("visit contact")
             if random.random() < 0.2:
                 user_actions.append("sent message")
 
-        # Shuffle for randomness and limit to num_actions
+        # Shuffle for realism and limit to max actions
         random.shuffle(user_actions)
         user_actions = user_actions[:num_actions]
 
-        # Generate events with realistic time spacing
+        # --- Generate events with realistic timestamps ---
         for i, action in enumerate(user_actions):
             timestamp = base_time + timedelta(
                 minutes=random.randint(5, 180) * i,
@@ -61,8 +74,7 @@ while len(events) < TARGET_EVENTS:
                 "country": country,
                 "user_action": action,
                 "timestamp": int(timestamp.timestamp() * 1000),  # UNIX ms
-                "readable_timestamp": timestamp.strftime("%y-%m-%d %I:%M:%S %p")
-
+                "readable_timestamp": timestamp.strftime("%Y-%m-%d %I:%M:%S %p")
             }
             events.append(event)
             if len(events) >= TARGET_EVENTS:
@@ -70,7 +82,7 @@ while len(events) < TARGET_EVENTS:
         if len(events) >= TARGET_EVENTS:
             break
 
-# Shuffle events for realism
+# Shuffle for realism
 random.shuffle(events)
 
 # --- Save to JSON ---
@@ -86,5 +98,5 @@ with open(csv_path, "w", newline="", encoding="utf-8") as csv_file:
     writer.writerows(events)
 
 print(
-    f"✅ Successfully generated {len(events)} realistic user events with session IDs!")
+    f"✅ Successfully generated {len(events)} realistic user events with sessions, plans, and trainers!")
 print("📁 Files saved to: data/rum_generated.json and data/rum_generated.csv")
