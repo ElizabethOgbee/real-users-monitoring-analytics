@@ -1,14 +1,5 @@
 [
     {
-        "label": "json",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "json",
-        "description": "json",
-        "detail": "json",
-        "documentation": {}
-    },
-    {
         "label": "csv",
         "kind": 6,
         "isExtraImport": true,
@@ -18,21 +9,21 @@
         "documentation": {}
     },
     {
+        "label": "json",
+        "kind": 6,
+        "isExtraImport": true,
+        "importPath": "json",
+        "description": "json",
+        "detail": "json",
+        "documentation": {}
+    },
+    {
         "label": "random",
         "kind": 6,
         "isExtraImport": true,
         "importPath": "random",
         "description": "random",
         "detail": "random",
-        "documentation": {}
-    },
-    {
-        "label": "uuid",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "uuid",
-        "description": "uuid",
-        "detail": "uuid",
         "documentation": {}
     },
     {
@@ -52,102 +43,66 @@
         "documentation": {}
     },
     {
-        "label": "os",
-        "kind": 6,
-        "isExtraImport": true,
-        "importPath": "os",
-        "description": "os",
-        "detail": "os",
+        "label": "get_timestamp",
+        "kind": 2,
+        "importPath": "scripts.pulsefit_rum_data_generator",
+        "description": "scripts.pulsefit_rum_data_generator",
+        "peekOfCode": "def get_timestamp(base_time, offset_minutes):\n    t = base_time + timedelta(minutes=offset_minutes)\n    return t.strftime(\"%m/%d/%Y, %I:%M %p\")\n# ----- Generate realistic user sessions -----\ndef generate_rum_data(target_events=10000, num_users=3000):\n    events = []\n    base_date = datetime.now() - timedelta(days=90)\n    while len(events) < target_events:\n        user_id = random.randint(10000, 99999)\n        country = random.choices(COUNTRIES, weights=[0.6, 0.15, 0.3, 0.1, 0.20, 0.15])[",
+        "detail": "scripts.pulsefit_rum_data_generator",
         "documentation": {}
     },
     {
-        "label": "TARGET_EVENTS",
-        "kind": 5,
-        "importPath": "scripts.rum_data_generator",
-        "description": "scripts.rum_data_generator",
-        "peekOfCode": "TARGET_EVENTS = 10000       # Total events to generate\nNUM_USERS = 3000            # Unique users\nMAX_ACTIONS_PER_SESSION = 6\nSTART_DATE = datetime.now() - timedelta(days=180)  # 6 months back\nCOUNTRIES = [\"Nigeria\", \"Ghana\", \"Egypt\", \"South Africa\", \"USA\", \"UK\"]\n# --- Plans and Trainers ---\nPLANS = [\"Basic\", \"Pro\", \"Elite\"]\nTRAINERS = [\"Alex Johnson\", \"Mia Carter\",\n            \"Liam Smith\", \"Sophia Brown\", \"Noah Wilson\", 'visit home', 'visit plans', 'visit trainers']\nevents = []",
-        "detail": "scripts.rum_data_generator",
-        "documentation": {}
-    },
-    {
-        "label": "NUM_USERS",
-        "kind": 5,
-        "importPath": "scripts.rum_data_generator",
-        "description": "scripts.rum_data_generator",
-        "peekOfCode": "NUM_USERS = 3000            # Unique users\nMAX_ACTIONS_PER_SESSION = 6\nSTART_DATE = datetime.now() - timedelta(days=180)  # 6 months back\nCOUNTRIES = [\"Nigeria\", \"Ghana\", \"Egypt\", \"South Africa\", \"USA\", \"UK\"]\n# --- Plans and Trainers ---\nPLANS = [\"Basic\", \"Pro\", \"Elite\"]\nTRAINERS = [\"Alex Johnson\", \"Mia Carter\",\n            \"Liam Smith\", \"Sophia Brown\", \"Noah Wilson\", 'visit home', 'visit plans', 'visit trainers']\nevents = []\nwhile len(events) < TARGET_EVENTS:",
-        "detail": "scripts.rum_data_generator",
-        "documentation": {}
-    },
-    {
-        "label": "MAX_ACTIONS_PER_SESSION",
-        "kind": 5,
-        "importPath": "scripts.rum_data_generator",
-        "description": "scripts.rum_data_generator",
-        "peekOfCode": "MAX_ACTIONS_PER_SESSION = 6\nSTART_DATE = datetime.now() - timedelta(days=180)  # 6 months back\nCOUNTRIES = [\"Nigeria\", \"Ghana\", \"Egypt\", \"South Africa\", \"USA\", \"UK\"]\n# --- Plans and Trainers ---\nPLANS = [\"Basic\", \"Pro\", \"Elite\"]\nTRAINERS = [\"Alex Johnson\", \"Mia Carter\",\n            \"Liam Smith\", \"Sophia Brown\", \"Noah Wilson\", 'visit home', 'visit plans', 'visit trainers']\nevents = []\nwhile len(events) < TARGET_EVENTS:\n    user_id = random.randint(1000, 9999)",
-        "detail": "scripts.rum_data_generator",
-        "documentation": {}
-    },
-    {
-        "label": "START_DATE",
-        "kind": 5,
-        "importPath": "scripts.rum_data_generator",
-        "description": "scripts.rum_data_generator",
-        "peekOfCode": "START_DATE = datetime.now() - timedelta(days=180)  # 6 months back\nCOUNTRIES = [\"Nigeria\", \"Ghana\", \"Egypt\", \"South Africa\", \"USA\", \"UK\"]\n# --- Plans and Trainers ---\nPLANS = [\"Basic\", \"Pro\", \"Elite\"]\nTRAINERS = [\"Alex Johnson\", \"Mia Carter\",\n            \"Liam Smith\", \"Sophia Brown\", \"Noah Wilson\", 'visit home', 'visit plans', 'visit trainers']\nevents = []\nwhile len(events) < TARGET_EVENTS:\n    user_id = random.randint(1000, 9999)\n    country = random.choice(COUNTRIES)",
-        "detail": "scripts.rum_data_generator",
-        "documentation": {}
-    },
-    {
-        "label": "COUNTRIES",
-        "kind": 5,
-        "importPath": "scripts.rum_data_generator",
-        "description": "scripts.rum_data_generator",
-        "peekOfCode": "COUNTRIES = [\"Nigeria\", \"Ghana\", \"Egypt\", \"South Africa\", \"USA\", \"UK\"]\n# --- Plans and Trainers ---\nPLANS = [\"Basic\", \"Pro\", \"Elite\"]\nTRAINERS = [\"Alex Johnson\", \"Mia Carter\",\n            \"Liam Smith\", \"Sophia Brown\", \"Noah Wilson\", 'visit home', 'visit plans', 'visit trainers']\nevents = []\nwhile len(events) < TARGET_EVENTS:\n    user_id = random.randint(1000, 9999)\n    country = random.choice(COUNTRIES)\n    # Each user can have 1-2 sessions",
-        "detail": "scripts.rum_data_generator",
+        "label": "generate_rum_data",
+        "kind": 2,
+        "importPath": "scripts.pulsefit_rum_data_generator",
+        "description": "scripts.pulsefit_rum_data_generator",
+        "peekOfCode": "def generate_rum_data(target_events=10000, num_users=3000):\n    events = []\n    base_date = datetime.now() - timedelta(days=90)\n    while len(events) < target_events:\n        user_id = random.randint(10000, 99999)\n        country = random.choices(COUNTRIES, weights=[0.6, 0.15, 0.3, 0.1, 0.20, 0.15])[\n            0]  # Nigeria more common\n        # each user may have 1–3 sessions\n        for _ in range(random.randint(1, 3)):\n            session_id = random.randint(1000, 9999)",
+        "detail": "scripts.pulsefit_rum_data_generator",
         "documentation": {}
     },
     {
         "label": "PLANS",
         "kind": 5,
-        "importPath": "scripts.rum_data_generator",
-        "description": "scripts.rum_data_generator",
-        "peekOfCode": "PLANS = [\"Basic\", \"Pro\", \"Elite\"]\nTRAINERS = [\"Alex Johnson\", \"Mia Carter\",\n            \"Liam Smith\", \"Sophia Brown\", \"Noah Wilson\", 'visit home', 'visit plans', 'visit trainers']\nevents = []\nwhile len(events) < TARGET_EVENTS:\n    user_id = random.randint(1000, 9999)\n    country = random.choice(COUNTRIES)\n    # Each user can have 1-2 sessions\n    num_sessions = random.choice([1, 2])\n    for _ in range(num_sessions):",
-        "detail": "scripts.rum_data_generator",
+        "importPath": "scripts.pulsefit_rum_data_generator",
+        "description": "scripts.pulsefit_rum_data_generator",
+        "peekOfCode": "PLANS = [\"Basic\", \"Pro\", \"Elite\"]\nTRAINERS = [\"Alex Johnson\", \"Mia Carter\", \"Liam Smith\"]\nPAGES = [\"Home\", \"Plans\", \"Trainers\", \"Contact\"]\nACTIONS = [\n    *[f\"Visited {page}\" for page in PAGES],\n    *[f\"Viewed Trainer: {t}\" for t in TRAINERS],\n    *[f\"Viewed Plan: {p}\" for p in PLANS]\n]\nCOUNTRIES = [\"Nigeria\", \"Kenya\", \"Egypt\", \"South Africa\", \"USA\", \"UK\"]\n# ----- Timestamp helper -----",
+        "detail": "scripts.pulsefit_rum_data_generator",
         "documentation": {}
     },
     {
         "label": "TRAINERS",
         "kind": 5,
-        "importPath": "scripts.rum_data_generator",
-        "description": "scripts.rum_data_generator",
-        "peekOfCode": "TRAINERS = [\"Alex Johnson\", \"Mia Carter\",\n            \"Liam Smith\", \"Sophia Brown\", \"Noah Wilson\", 'visit home', 'visit plans', 'visit trainers']\nevents = []\nwhile len(events) < TARGET_EVENTS:\n    user_id = random.randint(1000, 9999)\n    country = random.choice(COUNTRIES)\n    # Each user can have 1-2 sessions\n    num_sessions = random.choice([1, 2])\n    for _ in range(num_sessions):\n        session_id = str(uuid.uuid4())  # unique session ID",
-        "detail": "scripts.rum_data_generator",
+        "importPath": "scripts.pulsefit_rum_data_generator",
+        "description": "scripts.pulsefit_rum_data_generator",
+        "peekOfCode": "TRAINERS = [\"Alex Johnson\", \"Mia Carter\", \"Liam Smith\"]\nPAGES = [\"Home\", \"Plans\", \"Trainers\", \"Contact\"]\nACTIONS = [\n    *[f\"Visited {page}\" for page in PAGES],\n    *[f\"Viewed Trainer: {t}\" for t in TRAINERS],\n    *[f\"Viewed Plan: {p}\" for p in PLANS]\n]\nCOUNTRIES = [\"Nigeria\", \"Kenya\", \"Egypt\", \"South Africa\", \"USA\", \"UK\"]\n# ----- Timestamp helper -----\ndef get_timestamp(base_time, offset_minutes):",
+        "detail": "scripts.pulsefit_rum_data_generator",
         "documentation": {}
     },
     {
-        "label": "events",
+        "label": "PAGES",
         "kind": 5,
-        "importPath": "scripts.rum_data_generator",
-        "description": "scripts.rum_data_generator",
-        "peekOfCode": "events = []\nwhile len(events) < TARGET_EVENTS:\n    user_id = random.randint(1000, 9999)\n    country = random.choice(COUNTRIES)\n    # Each user can have 1-2 sessions\n    num_sessions = random.choice([1, 2])\n    for _ in range(num_sessions):\n        session_id = str(uuid.uuid4())  # unique session ID\n        base_time = START_DATE + timedelta(\n            days=random.randint(0, 180),",
-        "detail": "scripts.rum_data_generator",
+        "importPath": "scripts.pulsefit_rum_data_generator",
+        "description": "scripts.pulsefit_rum_data_generator",
+        "peekOfCode": "PAGES = [\"Home\", \"Plans\", \"Trainers\", \"Contact\"]\nACTIONS = [\n    *[f\"Visited {page}\" for page in PAGES],\n    *[f\"Viewed Trainer: {t}\" for t in TRAINERS],\n    *[f\"Viewed Plan: {p}\" for p in PLANS]\n]\nCOUNTRIES = [\"Nigeria\", \"Kenya\", \"Egypt\", \"South Africa\", \"USA\", \"UK\"]\n# ----- Timestamp helper -----\ndef get_timestamp(base_time, offset_minutes):\n    t = base_time + timedelta(minutes=offset_minutes)",
+        "detail": "scripts.pulsefit_rum_data_generator",
         "documentation": {}
     },
     {
-        "label": "json_path",
+        "label": "ACTIONS",
         "kind": 5,
-        "importPath": "scripts.rum_data_generator",
-        "description": "scripts.rum_data_generator",
-        "peekOfCode": "json_path = \"data/rum_generated.json\"\nwith open(json_path, \"w\", encoding=\"utf-8\") as json_file:\n    json.dump(events, json_file, indent=4)\n# --- Save to CSV ---\ncsv_path = \"data/rum_generated.csv\"\nwith open(csv_path, \"w\", newline=\"\", encoding=\"utf-8\") as csv_file:\n    writer = csv.DictWriter(csv_file, fieldnames=events[0].keys())\n    writer.writeheader()\n    writer.writerows(events)\nprint(",
-        "detail": "scripts.rum_data_generator",
+        "importPath": "scripts.pulsefit_rum_data_generator",
+        "description": "scripts.pulsefit_rum_data_generator",
+        "peekOfCode": "ACTIONS = [\n    *[f\"Visited {page}\" for page in PAGES],\n    *[f\"Viewed Trainer: {t}\" for t in TRAINERS],\n    *[f\"Viewed Plan: {p}\" for p in PLANS]\n]\nCOUNTRIES = [\"Nigeria\", \"Kenya\", \"Egypt\", \"South Africa\", \"USA\", \"UK\"]\n# ----- Timestamp helper -----\ndef get_timestamp(base_time, offset_minutes):\n    t = base_time + timedelta(minutes=offset_minutes)\n    return t.strftime(\"%m/%d/%Y, %I:%M %p\")",
+        "detail": "scripts.pulsefit_rum_data_generator",
         "documentation": {}
     },
     {
-        "label": "csv_path",
+        "label": "COUNTRIES",
         "kind": 5,
-        "importPath": "scripts.rum_data_generator",
-        "description": "scripts.rum_data_generator",
-        "peekOfCode": "csv_path = \"data/rum_generated.csv\"\nwith open(csv_path, \"w\", newline=\"\", encoding=\"utf-8\") as csv_file:\n    writer = csv.DictWriter(csv_file, fieldnames=events[0].keys())\n    writer.writeheader()\n    writer.writerows(events)\nprint(\n    f\"✅ Successfully generated {len(events)} realistic user events with sessions, plans, and trainers!\")\nprint(\"📁 Files saved to: data/rum_generated.json and data/rum_generated.csv\")",
-        "detail": "scripts.rum_data_generator",
+        "importPath": "scripts.pulsefit_rum_data_generator",
+        "description": "scripts.pulsefit_rum_data_generator",
+        "peekOfCode": "COUNTRIES = [\"Nigeria\", \"Kenya\", \"Egypt\", \"South Africa\", \"USA\", \"UK\"]\n# ----- Timestamp helper -----\ndef get_timestamp(base_time, offset_minutes):\n    t = base_time + timedelta(minutes=offset_minutes)\n    return t.strftime(\"%m/%d/%Y, %I:%M %p\")\n# ----- Generate realistic user sessions -----\ndef generate_rum_data(target_events=10000, num_users=3000):\n    events = []\n    base_date = datetime.now() - timedelta(days=90)\n    while len(events) < target_events:",
+        "detail": "scripts.pulsefit_rum_data_generator",
         "documentation": {}
     }
 ]
