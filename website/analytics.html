@@ -1,11 +1,10 @@
-<!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Analytics | PulseFit Gym</title>
+  <title>PulseFit Analytics | Real User Data Insights</title>
   <link rel="stylesheet" href="../website/css/style.css">
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -17,107 +16,99 @@
         <a href="index.html">Home</a>
         <a href="subscriptions.html">Plans</a>
         <a href="trainers.html">Trainers</a>
-        <a href="contact.html">Contact</a>
         <a href="analytics.html" class="active">Real User Data Monitoring Analytics</a>
+        <a href="contact.html">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- Analytics Section -->
+  <!-- Analytics Hero Section -->
+  <section class="plans-hero" style="height: 50vh;">
+    <div class="overlay">
+      <h1>Real User Analytics Dashboard</h1>
+      <p>Insights from actual subscription, engagement, and revenue performance.</p>
+    </div>
+  </section>
+
+  <!-- Main Analytics Section -->
   <section class="analytics-section">
     <div class="container">
-      <h2>Real User Monitoring Dashboard</h2>
-      <p class="section-intro">Track user activity, location insights, and engagement across countries using Datadog RUM simulation data.</p>
+      <h2>Interactive Power BI Dashboard</h2>
+      <p class="section-intro">
+        Explore user behaviour, subscription performance, and monthly revenue patterns with this
+        fully interactive dashboard. Visuals update instantly as you explore.
+      </p>
 
-      <div class="charts-grid">
-        <!-- Chart 1 -->
-        <div class="chart-card">
-          <h3>Users by Country</h3>
-          <canvas id="countryChart"></canvas>
-        </div>
-
-        <!-- Chart 2 -->
-        <div class="chart-card">
-          <h3>Session Duration (min)</h3>
-          <canvas id="durationChart"></canvas>
-        </div>
-
-        <!-- Chart 3 -->
-        <div class="chart-card">
-          <h3>Active Sessions Over Time</h3>
-          <canvas id="sessionChart"></canvas>
-        </div>
+      <!-- Power BI Embed -->
+      <div style="margin-top: 3rem;">
+        <iframe 
+          title="PulseFit Power BI Analytics"
+          width="100%" 
+          height="650px"
+          src="YOUR_POWER_BI_EMBED_LINK_HERE"
+          frameborder="0"
+          allowFullScreen="true">
+        </iframe>
       </div>
     </div>
+  </section>
+
+  <!-- Storytelling Section -->
+  <section class="why-choose-us" style="background: #fff;">
+    <div class="container">
+      <h2>Data-Driven Storytelling & Insights</h2>
+
+      <div class="features">
+
+        <!-- Insight Card 1 -->
+        <div class="feature-card">
+          <img src="../website/images/analytics1.jpg" alt="User Distribution">
+          <h3>1. User Growth & Distribution</h3>
+          <p>
+            Our dashboard reveals which countries contribute the highest number of new users,
+            helping the business identify the strongest acquisition markets.
+          </p>
+        </div>
+
+        <!-- Insight Card 2 -->
+        <div class="feature-card">
+          <img src="../website/images/analytics2.jpg" alt="Revenue by Plan">
+          <h3>2. Subscription Revenue Patterns</h3>
+          <p>
+            The Elite plan delivers the highest revenue per user,
+            even though the Basic plan has the most subscribers.
+          </p>
+        </div>
+
+        <!-- Insight Card 3 -->
+        <div class="feature-card">
+          <img src="../website/images/analytics3.jpg" alt="Conversion Rate">
+          <h3>3. Conversion Rate Performance</h3>
+          <p>
+            Monthly conversion rates show consistent improvement,
+            indicating strong engagement and an effective onboarding flow.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Conclusion Section -->
+  <section class="cta-section">
+    <h2>Final Summary</h2>
+    <p style="max-width: 700px; margin: 10px auto;">
+      PulseFit’s analytics dashboard gives leadership the visibility needed to make strong
+      data-backed decisions. Trends reveal user behavior, financial health, and the true performance
+      of each subscription tier.
+    </p>
+    <a href="subscriptions.html" class="cta-button">View Membership Plans</a>
   </section>
 
   <!-- Footer -->
   <footer>
     <p>© 2025 PulseFit Gym. All Rights Reserved.</p>
   </footer>
-
-  <script>
-    // ===== Users by Country =====
-    const countryCtx = document.getElementById('countryChart').getContext('2d');
-    new Chart(countryCtx, {
-      type: 'bar',
-      data: {
-        labels: ['Nigeria', 'Ghana', 'Egypt', 'Kenya', 'South Africa', 'UK'],
-        datasets: [{
-          label: 'Users',
-          data: [1200, 900, 650, 500, 400, 850],
-          backgroundColor: '#ff6b35',
-          borderRadius: 8
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: { legend: { display: false } },
-        scales: { y: { beginAtZero: true } }
-      }
-    });
-
-    // ===== Session Duration =====
-    const durationCtx = document.getElementById('durationChart').getContext('2d');
-    new Chart(durationCtx, {
-      type: 'doughnut',
-      data: {
-        labels: ['0–5 min', '5–15 min', '15–30 min', '30+ min'],
-        datasets: [{
-          data: [45, 30, 15, 10],
-          backgroundColor: ['#ff6b35', '#f7c948', '#36a2eb', '#7ed957']
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: { legend: { position: 'bottom' } }
-      }
-    });
-
-    // ===== Active Sessions Over Time =====
-    const sessionCtx = document.getElementById('sessionChart').getContext('2d');
-    new Chart(sessionCtx, {
-      type: 'line',
-      data: {
-        labels: ['Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'],
-        datasets: [{
-          label: 'Active Sessions',
-          data: [100, 250, 400, 550, 480, 620, 780],
-          borderColor: '#ff6b35',
-          backgroundColor: 'rgba(255,107,53,0.2)',
-          tension: 0.3,
-          fill: true
-        }]
-      },
-      options: {
-        responsive: true,
-        plugins: { legend: { display: false } },
-        scales: {
-          y: { beginAtZero: true }
-        }
-      }
-    });
-  </script>
 
 </body>
 </html>
