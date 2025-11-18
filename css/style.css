@@ -395,7 +395,7 @@ footer {
 .analytics-section {
   padding: 4rem 0;
   background: #f9f9f9;
-  text-align: center;
+  /* text-align: center; */
 }
 
 .analytics-section h2 {
@@ -433,9 +433,10 @@ footer {
 /* Row layout: image left, text right */
 .analysis-row {
     display: flex;
+    flex-wrap: wrap; /* <-- allow wrapping */
     align-items: flex-start;
     justify-content: space-between;
-    gap: 40px;  /* ⬅ adds enough spacing between image & text */
+    gap: 40px;
     margin-top: 25px;
 }
 
