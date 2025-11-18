@@ -1,12 +1,14 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PulseFit Analytics | Real User Data Insights</title>
   <link rel="stylesheet" href="../website/css/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+
+<body class="bg-gray-50 text-gray-800">
 
   <!-- Header -->
   <header class="site-header">
@@ -22,93 +24,216 @@
     </div>
   </header>
 
-  <!-- Analytics Hero Section -->
+  <!-- Hero Section -->
   <section class="plans-hero" style="height: 50vh;">
     <div class="overlay">
       <h1>Real User Analytics Dashboard</h1>
-      <p>Insights from actual subscription, engagement, and revenue performance.</p>
+      <p>Insights from subscription trends, engagement behavior, and revenue performance.</p>
     </div>
   </section>
 
-  <!-- Main Analytics Section -->
+  <!-- MAIN ANALYTICS CONTENT -->
   <section class="analytics-section">
-    <div class="container">
-      <h2>Interactive Power BI Dashboard</h2>
-      <p class="section-intro">
-        Explore user behaviour, subscription performance, and monthly revenue patterns with this
-        fully interactive dashboard. Visuals update instantly as you explore.
-      </p>
+    <div class="container max-w-5xl mx-auto py-10 px-4">
 
-      <!-- Power BI Embed -->
-      <div style="margin-top: 3rem;">
-        <iframe 
-          title="PulseFit Power BI Analytics"
-          width="100%" 
-          height="650px"
-          src="YOUR_POWER_BI_EMBED_LINK_HERE"
-          frameborder="0"
-          allowFullScreen="true">
-        </iframe>
-      </div>
-    </div>
-  </section>
+      <!-- EXECUTIVE SUMMARY -->
 
-  <!-- Storytelling Section -->
-  <section class="why-choose-us" style="background: #fff;">
-    <div class="container">
-      <h2>Data-Driven Storytelling & Insights</h2>
+      <section class="mb-10">
+        <h2 class="text-2xl font-semibold mb-3">Executive Summary</h2>
+        <p>
+          This analytics report provides insights into PulseFit user demographics, subscription behavior,
+          engagement trends, and revenue generation. The Power BI dashboard highlights how users interact
+          with the platform and which plan tiers contribute the most to revenue growth.
+        </p>
+      </section>
 
-      <div class="features">
-
-        <!-- Insight Card 1 -->
-        <div class="feature-card">
-          <img src="../website/images/analytics1.jpg" alt="User Distribution">
-          <h3>1. User Growth & Distribution</h3>
-          <p>
-            Our dashboard reveals which countries contribute the highest number of new users,
-            helping the business identify the strongest acquisition markets.
-          </p>
-        </div>
-
-        <!-- Insight Card 2 -->
-        <div class="feature-card">
-          <img src="../website/images/analytics2.jpg" alt="Revenue by Plan">
-          <h3>2. Subscription Revenue Patterns</h3>
-          <p>
-            The Elite plan delivers the highest revenue per user,
-            even though the Basic plan has the most subscribers.
-          </p>
-        </div>
-
-        <!-- Insight Card 3 -->
-        <div class="feature-card">
-          <img src="../website/images/analytics3.jpg" alt="Conversion Rate">
-          <h3>3. Conversion Rate Performance</h3>
-          <p>
-            Monthly conversion rates show consistent improvement,
-            indicating strong engagement and an effective onboarding flow.
-          </p>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- Conclusion Section -->
-  <section class="cta-section">
-    <h2>Final Summary</h2>
-    <p style="max-width: 700px; margin: 10px auto;">
-      PulseFit’s analytics dashboard gives leadership the visibility needed to make strong
-      data-backed decisions. Trends reveal user behavior, financial health, and the true performance
-      of each subscription tier.
+             <!-- ====================== PROBLEM STATEMENT ====================== -->
+<section class="analysis-section">
+    <h2>Problem Statement</h2>
+    <p>
+        PulseFit is experiencing rapid user growth but lacks visibility into who its users are,
+        how they interact with the platform, which subscription plans they prefer, and how much
+        revenue is being generated.  
+        This analysis provides clear insights to guide product improvement, marketing strategy,
+        and revenue optimization.
     </p>
-    <a href="subscriptions.html" class="cta-button">View Membership Plans</a>
+</section>
+
+
+
+      <!-- BUSINESS OBJECTIVE -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-semibold mb-3">Business Objective</h2>
+        <p>
+          The primary goal is to understand user growth, monitor subscription performance, identify
+          high-value markets, and analyze the profitability of each plan tier. This enables the business
+          to optimize marketing, enhance product experience, and strengthen overall revenue strategy.
+        </p>
+      </section>
+
+      <!-- KEY METRICS -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-semibold mb-3">Key Metrics Overview</h2>
+        <ul class="list-disc ml-6">
+          <li>Total Users</li>
+          <li>Revenue Generated</li>
+          <li>Conversion Rate</li>
+          <li>Subscription Distribution</li>
+          <li>Engagement Activity</li>
+        </ul>
+      </section>
+
+
+<!-- ====================== USER DEMOGRAPHICS ====================== -->
+<section class="analysis-section">
+    <h2>User Demographics</h2>
+
+    <div class="analysis-row">
+        <!-- Image (LEFT) -->
+        <div class="analysis-image">
+            <img src="../website/images/user_demograph.png" alt="User Demographics Chart">
+        </div>
+
+        <!-- Text (RIGHT) -->
+        <div class="analysis-text">
+            <ul>
+                <li>Nigeria and South Africa account for the largest share of total users.</li>
+                <li>Egypt, Ghana, and Tanzania make up the remaining user distribution.</li>
+                <li>PulseFit is heavily adopted in West and Southern Africa.</li>
+                <li>This provides a strong base for targeted regional marketing.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+<!-- ====================== ENGAGEMENT BEHAVIOUR ====================== -->
+<section class="analysis-section">
+    <h2>Engagement Behaviour</h2>
+
+    <div class="analysis-row">
+        <!-- Image (LEFT) -->
+        <div class="analysis-image">
+            <img src="../website/images/engagement_behavior.png" alt="Engagement Behaviour Chart">
+        </div>
+
+        <!-- Text (RIGHT) -->
+        <div class="analysis-text">
+            <ul>
+                <li>Active sessions are consistent across most days.</li>
+                <li>Peak activity appears around midday and early evening.</li>
+                <li>User drop-offs happen mostly late at night when engagement is lowest.</li>
+                <li>Timing insights can guide better notification and workout reminder scheduling.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+<!-- ====================== CONVERSION & SUBSCRIPTION ANALYSIS ====================== -->
+<section class="analysis-section">
+    <h2>Conversion & Subscription Analysis</h2>
+
+    <div class="analysis-row">
+        <!-- Image (LEFT) -->
+        <div class="analysis-image">
+            <img src="../website/images/conversion_and_subscription.png" alt="Subscription and Conversion Chart">
+        </div>
+
+        <!-- Text (RIGHT) -->
+        <div class="analysis-text">
+            <ul>
+                <li>Basic plan attracts the most sign-ups but has lower retention.</li>
+                <li>Pro plan balances affordability and value, driving stable conversions.</li>
+                <li>Elite plan users show the highest loyalty and longest retention.</li>
+                <li>Premium-focused incentives may increase long-term subscriber value.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+
+<!-- ====================== REVENUE & PROFITABILITY ====================== -->
+<section class="analysis-section">
+    <h2>Revenue & Profitability</h2>
+
+    <div class="analysis-row">
+        <!-- Image (LEFT) -->
+        <div class="analysis-image">
+            <img src="../website/images/revenue.png" alt="Revenue Trend Chart">
+        </div>
+
+        <!-- Text (RIGHT) -->
+        <div class="analysis-text">
+            <ul>
+                <li>Elite plan users generate the highest share of total revenue.</li>
+                <li>Although fewer in number, Elite contributes roughly 40–50% of all earnings.</li>
+                <li>Pro plan is the second-largest revenue driver.</li>
+                <li>Strengthening premium offerings can significantly increase overall profitability.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+      <!-- RECOMMENDATIONS -->
+      <section class="mb-10">
+        <h2 class="text-2xl font-semibold mb-3">Recommendations</h2>
+        <ul class="list-disc ml-6 mt-2">
+          <li>Invest more marketing in high-performing regions.</li>
+          <li>Boost engagement through reminders and challenges.</li>
+          <li>Introduce discount campaigns to increase upgrades.</li>
+          <li>Track cohorts for deeper retention insight.</li>
+        </ul>
+      </section>
+
+      <!-- FUTURE ENHANCEMENTS -->
+      <section class="mb-20">
+        <h2 class="text-2xl font-semibold mb-3">Future Enhancements</h2>
+        <ul class="list-disc ml-6">
+          <li>Automated Power BI refresh using gateways</li>
+          <li>AI forecasting for subscription trends</li>
+          <li>Retention and churn analysis dashboards</li>
+          <li>Profit forecasting using historical behavior</li>
+        </ul>
+      </section>
+
+    </div>
   </section>
 
   <!-- Footer -->
   <footer>
     <p>© 2025 PulseFit Gym. All Rights Reserved.</p>
   </footer>
+
+   <!-- IMAGE POPUP LIGHTBOX -->
+  <div id="image-lightbox" class="hidden fixed inset-0 bg-black bg-opacity-90 flex items-center justify-center z-[9999] p-4">
+    <span id="lightbox-close" class="absolute top-6 right-10 text-white text-6xl cursor-pointer font-bold">&times;</span>
+    <img id="lightbox-img" class="max-w-[90%] max-h-[90%] rounded-xl shadow-xl" src="" alt="">
+  </div>
+
+  <!-- ⭐ Place JavaScript RIGHT HERE ⭐ -->
+  <script>
+    const lightbox = document.getElementById("image-lightbox");
+    const lightboxImg = document.getElementById("lightbox-img");
+    const closeBtn = document.getElementById("lightbox-close");
+
+    document.querySelectorAll(".analysis-image img").forEach(img => {
+      img.addEventListener("click", () => {
+        lightboxImg.src = img.src;
+        lightbox.classList.remove("hidden");
+      });
+    });
+
+    closeBtn.addEventListener("click", () => {
+      lightbox.classList.add("hidden");
+    });
+
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox) {
+        lightbox.classList.add("hidden");
+      }
+    });
+  </script>
 
 </body>
 </html>

@@ -421,3 +421,72 @@ footer {
   margin-bottom: 1rem;
   color: #222;
 }
+
+/* --- ANALYTICS PAGE STYLING --- */
+
+/* Outer section spacing */
+.analysis-section {
+    margin-bottom: 60px;
+    padding: 20px 0;
+}
+
+/* Row layout: image left, text right */
+.analysis-row {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40px;  /* ⬅ adds enough spacing between image & text */
+    margin-top: 25px;
+}
+
+/* Image container */
+.analysis-image img {
+    width: 100%;
+    max-width: 420px;  /* ⬅ stops image from being too big */
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* Text container */
+.analysis-text {
+    flex: 1;
+}
+
+.analysis-text ul {
+    list-style: disc;
+    padding-left: 20px;
+    line-height: 1.8;  /* ⬅ perfect spacing between bullet points */
+}
+
+/* Section title */
+.analysis-section h2 {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .analysis-row {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .analysis-image img {
+        max-width: 100%;
+    }
+}
+
+.analysis-image img {
+    width: 100%;
+    max-width: 400px;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: transform 0.2s ease;
+}
+
+.analysis-image img:hover {
+    transform: scale(1.02);
+}
+
+
